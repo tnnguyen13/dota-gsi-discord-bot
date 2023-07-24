@@ -184,6 +184,7 @@ const allTopics = {
     }),
     ...gsi,
     ...discord,
+    voicePack: new Topic<string>("voicePack"),
 };
 
 export function registerAllTopics() {

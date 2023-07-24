@@ -20,7 +20,6 @@ export default configurable(
         trigger: [topics.inGame],
         given: [topics.time],
         when: ([inGame], [time]) => inGame && time === 0,
-        then: () =>
-            new Fact(topics.configurableEffect, "resources/audio/glhf.mp3"),
+        then: () => new Fact(topics.configurableEffect, "glhf.mp3"),
     })
 );

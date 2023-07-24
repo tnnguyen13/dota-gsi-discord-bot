@@ -22,9 +22,10 @@ export default function configurable(configTopicString: string, rule: Rule) {
     return new Rule({
         label: rule.label,
         trigger: rule.trigger,
-        given: [configTopic, ...rule.given],
+        given: [configTopic, topics.voicePack, ...rule.given],
         when: (trigger, given) => {
             const config = given.shift();
+            given.shift();
             if (config === EffectConfig.NONE) {
                 return false;
             }
@@ -32,12 +33,13 @@ export default function configurable(configTopicString: string, rule: Rule) {
         },
         then: (trigger, given) => {
             const config: EffectConfig = given.shift();
+            const voicePack: string = given.shift();
             const effect = configToEffectTopic[config];
             if (effect) {
                 const result = rule.thenArray(trigger, given);
                 return result.map((fact) => {
                     if (fact.topic.label === topics.configurableEffect.label) {
-                        return new Fact(effect, fact.value);
+                        return new Fact(effect, `${voicePack}/${fact.value}`);
                     } else {
                         return fact;
                     }

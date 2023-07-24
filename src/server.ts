@@ -273,6 +273,14 @@ router.post("/coach/:studentId/skywrath", (req, res) => {
     res.status(200).send();
 });
 
+router.post("/coach/:studentId/voicePack/:voice", (req, res) => {
+    engine.setFact(
+        req.params.studentId,
+        new Fact(topics.voicePack, req.params.voice)
+    );
+    res.status(200).send();
+});
+
 router.head("/gsi", (req, res) => {
     res.status(200).send();
 });

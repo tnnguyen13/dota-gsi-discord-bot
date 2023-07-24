@@ -161,6 +161,11 @@
             function debug_playPrivateAudio() {
                 fetch("./debug_playPrivateAudio", { method: "POST" });
             }
+
+            function voicePack_selection(voice) {
+                fetch(`./voicePack/${voice}`, { method: "POST" });
+                // console.log("We did it!");
+            }
         </script>
     </head>
     <body onload="onLoad()">
@@ -240,6 +245,19 @@
         >
             STOP COACHING
         </button>
+        <label for="voicePack">Choose a voice pack:</label>
+        <!-- <select
+            onchange="() => {
+                console.log('wow.');
+            };"
+            name="voicePack_names"
+            id="voicePack"
+        >
+            <option value="tts">Text to Speech</option>
+            <option value="canna">Canna</option>
+            <option value="birdy">Birdy</option>
+        </select> -->
+        <button onClick="voicePack_selection()">Canna</button>
         <br />
         <div style="display: none">
             Debug
